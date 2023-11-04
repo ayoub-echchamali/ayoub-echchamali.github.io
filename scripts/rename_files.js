@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const photosDirectory = './public/images/'; // Set this to the path of your photos directory
+const photosDirectory = '../public/images/'; // Set this to the path of your photos directory
 
 fs.readdir(photosDirectory, (err, files) => {
   if (err) {
