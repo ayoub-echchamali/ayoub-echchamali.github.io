@@ -1,10 +1,10 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import photoDescriptions from './photoDescriptions.json';
 
-
-const images = Array.from({ length: 33 }, (_, index) => `./images/photo_${index + 1}.jpeg`);
 const PhotoCarousel = () => {
+  const images = Array.from({ length: 30 }, (_, index) => `./images/photo_${index + 1}.jpeg`);
   return (
     <div
       style={{
@@ -61,20 +61,24 @@ const PhotoCarousel = () => {
             slidesToSlide={1}
             swipeable
         >
-            {images.map(image => {
+        {images.map((image, index) => {
+                const photoFileName = `photo_${index + 1}.jpeg`;
+                const description = photoDescriptions[photoFileName] || '';
                 return (
-                <img
-                    src={image}
-                    style={{
-                        height: '100%',
-                        display: 'block',
-                        margin: 'auto',
-                        width: 'auto',
-                        paddingTop: "5vh",
-                        paddingLeft: "5vw",
-                        paddingRight: "5vw",
-                    }}
-                />
+                    <>
+                    <figure style={{
+                        height: "100%",
+                    }} key={index}>
+                        <img
+                            src={image}
+                            style={{
+                                height: '90%',
+                            }}
+                            alt={`Photo ${index + 1}`}
+                        />
+                        <figcaption>{description}</figcaption>
+                    </figure>
+                    </>
                 );
             })}
         </Carousel>
